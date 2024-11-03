@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Letters to the Moon</title>
+  <style>
+    body {
+      margin: 0;
+        padding: 0;
+        background-image: url(ariannebg1.jpg);
+      background-size: contain; /* Ensures the whole image is visible */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: center; /* Centers the image in the viewport */
+    height: 100vh; /* Makes sure the body takes up the full viewport height */
+    width: 100vw; /* Ensures the full viewport width is used */
+    overflow: hidden; /* Removes any potential scrollbars */
+    }
+
+    header {
+      background-color: #040000;
+      color: #ffffff;
+      text-align: center;
+      padding: 1em;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #3a3333;
+      padding: 0.5em;
+    }
+
+    nav a {
+      color: #efe9e9;
+      text-decoration: none;
+      padding: 0.5em 1em;
+      margin: 0 0.5em;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #7d7c7d;
+    }
+
+    section {
+      padding: 5em;
+    }
+.login-container {
+    max-width: 220px;
+    position: absolute;
+    bottom: 50px;            /* Increase this value to move it lower */
+    left: 50%;               /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for width */
+    
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-size: 0.85em;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 0.4em;
+    margin-bottom: 0.8em;
+    border: none; /* Removes input field borders */
+    border-radius: 6px; /* Keeps the rounded corners */
+    font-size: 0.85em;
+    background-color: #f1f1f1; /* Adds a background color to distinguish the input fields */
+}
+
+.login-container button {
+    
+    color: #fff;
+    padding: 0.4em 0.8em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: background-color 0.3s;
+}
+
+
+
+    .portfolio-images {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin-top: 2em;
+    }
+
+    .portfolio-images img {
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 1em;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  .create-account {
+      text-align: center;
+      margin-top: 1em;
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1></h1>
+
+  </header>
+  
+
+  <section>
+    <div class="login-container">
+      <h2>Login</h2>
+      <form>
+        <label for="email">Username:</label>
+        <input type="text" id="email" name="Username" required>
+
+        <label for="Loginpassword">Password:</label>
+        <input type="password" id="password" name="Loginpassword" required>
+
+        <input type="submit" value="login" class="submit-btn" onclick="return auth()" />
+      </form>
+       <div class="create-account">
+        <p>Don't have an account? <a href="#" id="createAccountLink">Create an Account</a></p>
+      </div>
+    </div>
+
+    
+  </section>
+
+  <!-- Create Account Section -->
+  <section id="createAccountSection" style="display:none;">
+    <div class="login-container">
+      <h2>Create Account</h2>
+      <form id="createAccountForm">
+        <label for="newUsername">Username:</label>
+        <input type="text" id="newUsername" name="newUsername" required>
+
+        <label for="newEmail">Email:</label>
+        <input type="email" id="newEmail" name="newEmail" required>
+
+        <label for="newPassword">Password:</label>
+        <input type="password" id="newPassword" name="newPassword" required>
+
+        <input type="submit" value="Create Account" class="submit-btn" onclick="return createAccount()" />
+      </form>
+    </div>
+  </section>
+    
+    
+  </section>
+
+ <script>
+  function auth() {
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+
+      // Check if fields are empty
+      if (email.trim() === "" || password.trim() === "") {
+          alert("Please enter both username and password.");
+          return false; // Prevent form submission
+      }
+
+      if (email === "admin@gmail.com" && password === "admin123") {
+          window.location.assign("nav.html");
+          alert("Login Successfully");
+      } else {
+          alert("Invalid Information");
+      }
+
+      return false; // prevent form submission
+  }
+
+  document.getElementById('createAccountLink').onclick = function() {
+      // Toggle visibility of the create account form
+      var createAccountSection = document.getElementById('createAccountSection');
+      createAccountSection.style.display = createAccountSection.style.display === 'none' ? 'block' : 'none';
+      var loginContainer = document.querySelector('.login-container');
+      loginContainer.style.display = createAccountSection.style.display === 'block' ? 'none' : 'block';
+  };
+
+  function createAccount() {
+      var newUsername = document.getElementById("newUsername").value;
+      var newEmail = document.getElementById("newEmail").value;
+      var newPassword = document.getElementById("newPassword").value;
+
+      // Here you would typically send this data to your backend for processing
+      console.log({ newUsername, newEmail, newPassword });
+
+      // Simulate successful account creation
+      alert("Account created successfully!");
+
+      // Redirect to nav.html after account creation
+      window.location.assign("nav.html");
+      
+      return false; // prevent form submission
+  }
+ </script>
+  
+</body>
+</html>
